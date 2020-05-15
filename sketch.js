@@ -1,80 +1,52 @@
-var b1,b2,b3;
-var w1,w2,w3,b_speed,b_speed1,b_speed2;
-var  b_weight1,b_weight2,b_weight3;
-var thickness1,thickness2,thickness3;
+var w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,t1;
+const Engine = Matter.Engine;
+const World= Matter.World;
+const Bodies = Matter.Bodies;
 
 function setup() {
-  createCanvas(1200,400);
-  thickness1 = random (22,83);
-  thickness2 = random (22,83);
-  thickness3 = random (22,83);
-  b1 = createSprite(20, 70, 20, 20);
-  b2 = createSprite(20, 200, 20, 20);
-  b3 = createSprite(20, 330, 20, 20);
-  w1 = createSprite(1200,70,thickness1,50);
-  w2 = createSprite(1200,200,thickness2,50);
-  w3 = createSprite(1200,330,thickness3,50);
-  b_speed1 = random (223,321);
-  b_speed2 = random (223,321);
-  b_speed = random (223,321);
-
-  b_weight = random (30,52);
-  b_weight1 = random (30,52);
-  b_weight2 = random (30,52);
+  createCanvas(800,400);
+  engine = Engine.create();
+  world = engine.world;
+  w1 = new Wall(40,175,20,250);
+  w2 = new Wall(65,225,30,150);
+  w3 = new Wall(95,225,30,150);
+  w4 = new Wall(125,225,30,150);
+  w5 = new Wall(155,225,30,150);
+  w6 = new Wall(180,200,20,200);
+  w7 = new Wall(240,200,20,200);
+  w8 = new Wall(265,225,30,150);
+  w9 = new Wall(295,225,30,150);
+  w10 = new Wall(325,225,30,150);
+  w11 = new Wall(355,225,30,150);
+  w12 = new Wall(380,175,20,250);
+  w13 = new Wall(40,95,70,15);
+  w14 = new Wall(380,95,70,15);
+  w15 = new Wall(210,95,70,15);
+  w16  = new Wall(217,62,10,50);
   
-
 }
 
 function draw() {
-  background(255,255,255);  
-  drawSprites()
- 
-  if (mousePressedOver(b1)) {
-    b1.velocityX = b_speed;
-  }
-  if (mousePressedOver(b2)) {
-    b2.velocityX = b_speed1 ;
-  }
-  if (mousePressedOver(b3)) {
-    b3.velocityX =  b_speed2;
-  }
-
- 
- 
-  
- 
-  if (Collide (b1,w1)){
-    var damage = 0.5 * b_weight * b_speed * b_speed / (thickness1*thickness1*thickness1);
-    if (damage>10) {
-      w1.shapeColor = color (255,0,0);
-      b1.velocityX = 0;  
-    }
-    if (damage<10) {
-      w1.shapeColor = color (0,255,0);
-    }
-    }
-
-if (Collide (b2,w2)){
-var damage = 0.5 * b_weight1 * b_speed1 * b_speed1 / (thickness2*thickness2*thickness2);
-if (damage>10) {
-  w2.shapeColor = color (255,0,0);
+  Engine.update(engine);
+  background(255,25,255);  
+  w1.display();
+  w2.display();
+  w3.display();
+  w4.display();
+  w5.display();
+  w6.display();
+  w7.display();
+  w8.display();
+  w9.display();
+  w10.display();
+  w11.display();
+  w12.display();
+  w13.display();
+  w14.display();
+  w15.display();
+  w16.display();
+  drawSprites();
+  triangle (20,50,40,35,60,50);
+  triangle (360,50,380,35,400,50)
+  triangle (187,40,217,5,247,40); 
 }
-if (damage<10) {
-  w2.shapeColor = color (0,255,0);
-  b2.velocityX = 0;  
-}
-}
-
-
-
-  if (Collide (b3,w3)){
-    var damage = 0.5 * b_weight2 * b_speed2* b_speed2 / (thickness3*thickness3*thickness3);
-    if (damage>10) {
-      w3.shapeColor = color (255,0,0);
-    }
-    if (damage<10) {
-      w3.shapeColor = color (0,255,0);
-      b3.velocityX = 0;  
-    }
-    }
-  }
